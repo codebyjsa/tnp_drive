@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Branch {
+  CSE
+  IT
+  RAI
+  ME
+  CE
+  EE
+  ECE
+  BCA
+  MCA
+  BBA
+  MBA
+  BVoc
+  BArch
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  INTERNSHIP
+}
+
+model Admin {
+  admin_id       String    @id @default(uuid()) @db.Uuid
+  admin_name     String
+  admin_email    String    @unique
+  admin_password String
+  created_at     DateTime  @default(now())
+  updated_at     DateTime  @updatedAt
+
+  students       Student[]
+  teachers       Teacher[]
+}
+
+model Student {
+  student_id   BigInt   @id @default(autoincrement())
+  admin_id     String   @db.Uuid
+  admin        Admin    @relation(fields: [admin_id], references: [admin_id])
+  student_name String
+  crn          BigInt   @unique
+  urn          BigInt   @unique
+  student_dept Branch
+  student_year Int
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}
+
+model Teacher {
+  teacher_id   String   @id @default(uuid()) @db.Uuid
+  admin_id     String   @db.Uuid
+  admin        Admin    @relation(fields: [admin_id], references: [admin_id])
+  teacher_name String
+  teacher_dept String
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}
+
+model Placement_posts {
+  placement_id      BigInt   @id @default(autoincrement())
+  company_name      String
+  job_Role          String
+  drive_date        DateTime
+  job_title         String
+  job_description   String
+  eligible_branches Branch[]
+  min_cgpa          Float
+  job_type          JobType
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+}
