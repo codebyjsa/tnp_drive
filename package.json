@@ -15,12 +15,14 @@
     "next": "16.4.2",
     "pg": "^8.23.1",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "uuid": "^14.0.3"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^26.6.5",
     "@types/react": "19.3.0",
+    "@types/uuid": "^10.0.0",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",

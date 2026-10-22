@@ -66,10 +66,9 @@ model Teacher {
 model Placement_posts {
   placement_id      BigInt   @id @default(autoincrement())
   company_name      String
-  job_Role          String
-  drive_date        DateTime
-  job_title         String
+  job_role          String
   job_description   String
+  drive_date        DateTime
   eligible_branches Branch[]
   min_cgpa          Float
   job_type          JobType
