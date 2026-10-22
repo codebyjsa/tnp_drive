@@ -64,6 +64,35 @@ export async function createAdmin(data) {
 }
 
 /**
+ * Authenticates an admin using email and password from schema.
+ */
+export async function adminLogin({ email, password }) {
+  const admin_email = (email).trim().toLowerCase();
+  const admin_password = password;
+
+  if (!admin_email) {
+    throw new ServiceError("Email is required", 400);
+  }
+  if (!admin_password) {
+    throw new ServiceError("Password is required", 400);
+  }
+
+  const admin = await db.admin.findUnique({
+    where: { admin_email }
+  });
+
+  if (!admin || admin.admin_password !== admin_password) {
+    throw new ServiceError("Invalid email or password", 401);
+  }
+
+  return {
+    admin_id: admin.admin_id,
+    admin_name: admin.admin_name,
+    admin_email: admin.admin_email
+  };
+}
+
+/**
  * Creates a student record linked to an admin.
  * Matches prisma schema lines 31-54.
  */
@@ -440,6 +469,7 @@ const adminService = {
   serializeBigInt,
   isValidUuid,
   createAdmin,
+  adminLogin,
   createStudent,
   createTeacher,
   getUsers

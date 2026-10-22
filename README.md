@@ -20,6 +20,9 @@ A centralized platform designed to streamline and automate Training & Placement 
   - [3. POST `/api/admin/teacher`](#3-post-apiadminteacher)
   - [4. POST `/api/placement/post`](#4-post-apiplacementpost)
   - [5. GET `/api/placement/post`](#5-get-apiplacementpost)
+- [Frontend Pages & UI Overview](#frontend-pages--ui-overview)
+  - [1. Public Placement Drives Portal (`/`)](#1-public-placement-drives-portal-)
+  - [2. Admin Authentication & Drive Posting Portal (`/admin`)](#2-admin-authentication--drive-posting-portal-admin)
 - [Data Models Reference](#data-models-reference)
   - [Branch Enum](#branch-enum)
   - [JobType Enum](#jobtype-enum)
@@ -437,6 +440,58 @@ Retrieves placement drive posts. Returns all placement posts ordered by creation
     "error": "Placement post with id \"99999\" not found"
   }
   ```
+
+---
+
+## Frontend Pages & UI Overview
+
+The frontend is built using **Next.js 16 (App Router)** and styled exclusively with **Tailwind CSS**. It is structured using familiar React Client Component patterns (`'use client'`) with `useState`, `useEffect`, and native `fetch` API calls.
+
+---
+
+### 1. Public Placement Drives Portal (`/`)
+
+The public home page serves as the official portal for Guru Nanak Dev Engineering College (GNDEC) students to discover active recruitment drives.
+
+![GNDEC Placement Drives Portal](public/screenshots/homepage.png)
+
+#### Key Features:
+- **Hero & Live Statistics**: Displays active drives count, full-time opportunities, and internship openings.
+- **Search & Filtering**:
+  - Real-time search across company names, job roles, and descriptions.
+  - Dropdown filter by branch (`CSE`, `IT`, `ECE`, `ME`, `CE`, etc.).
+  - Filter by employment type (`Full Time`, `Internship`, `Part Time`).
+- **View Switcher (Card Grid vs Compact Table)**:
+  - **Card Grid View**: Rich visual presentation with company initial avatar, role badge, formatted interview schedule, eligibility threshold (`Min CGPA`), and branch tags.
+  - **Table View**: Classic corporate layout for fast comparison across companies and criteria.
+- **Data Persistence**: Fetches directly from PostgreSQL via `GET /api/placement/post`. All changes persist across page reloads and server restarts.
+- **Loading & Error States**: Graceful skeleton placeholders and error banners with a manual retry button.
+
+---
+
+### 2. Admin Authentication & Drive Posting Portal (`/admin`)
+
+The admin portal allows TNP coordinators to log in and publish new campus placement drives to the database.
+
+#### A. Admin Authentication Gate
+![Admin Login Screen](public/screenshots/admin_login.png)
+
+- Secure coordinator login validating `admin_email` and `admin_password` against the database via `POST /api/admin/login`.
+- Stores the active admin profile in session storage (`{ admin_id, admin_name, admin_email }`) with a 1-click **Logout** action.
+
+#### B. Placement Drive Registration Form & Management
+![Admin Drive Registration Portal](public/screenshots/admin_portal.png)
+
+- **Input Form** (`POST /api/placement/post`):
+  - **Company Name**: e.g., `Microsoft`, `Amazon`, `Google`.
+  - **Job Role / Designation**: e.g., `Cloud Solutions Architect`, `Software Development Engineer`.
+  - **Drive Date & Time**: Native datetime picker validating ISO 8601 timestamps.
+  - **Minimum CGPA Threshold**: Float value from `0.0` to `10.0`.
+  - **Job Type**: Full-Time, Internship, or Part-Time.
+  - **Eligible Branches**: Multi-select tags with quick **Select All** and **Clear All** controls.
+  - **Job Description**: Detailed multi-line selection rounds and package description.
+- **Instant Live Refresh**:
+  - Displays a real-time **Recent Placement Drives** table directly beneath the form, updated immediately after creating a new drive.
 
 ---
 
