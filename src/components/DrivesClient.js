@@ -265,9 +265,12 @@ export default function DrivesClient({ initialDrives = [] }) {
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <div>
-                        <h3 className="font-bold text-slate-900 text-lg group-hover:text-blue-700 transition">
+                        <Link
+                          href={`/placement/${drive.placement_id}`}
+                          className="font-bold text-slate-900 text-lg group-hover:text-blue-700 transition block"
+                        >
                           {drive.company_name}
-                        </h3>
+                        </Link>
                         <p className="text-sm font-semibold text-slate-600">{drive.job_role}</p>
                       </div>
                     </div>
@@ -298,7 +301,7 @@ export default function DrivesClient({ initialDrives = [] }) {
                   </p>
                 </div>
 
-                {/* Bottom Card Footer with Badges */}
+                {/* Bottom Card Footer with Badges & Action */}
                 <div className="pt-4 mt-4 border-t border-slate-100 space-y-3">
                   {/* Min CGPA */}
                   <div className="flex items-center justify-between text-xs">
@@ -324,6 +327,24 @@ export default function DrivesClient({ initialDrives = [] }) {
                       ))}
                     </div>
                   </div>
+
+                  {/* View Details Link */}
+                  <div className="pt-2">
+                    <Link
+                      href={`/placement/${drive.placement_id}`}
+                      className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-blue-700 text-slate-700 hover:text-white font-bold text-xs uppercase tracking-wider transition group/btn"
+                    >
+                      <span>View Details & Eligibility</span>
+                      <svg
+                        className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
@@ -343,12 +364,17 @@ export default function DrivesClient({ initialDrives = [] }) {
                     <th className="py-3.5 px-4">Drive Date</th>
                     <th className="py-3.5 px-4">Min CGPA</th>
                     <th className="py-3.5 px-4">Eligible Branches</th>
+                    <th className="py-3.5 px-4 text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-medium text-slate-700">
                   {filteredDrives.map((drive) => (
                     <tr key={drive.placement_id} className="hover:bg-slate-50/80 transition">
-                      <td className="py-3.5 px-4 font-bold text-slate-900">{drive.company_name}</td>
+                      <td className="py-3.5 px-4 font-bold text-slate-900">
+                        <Link href={`/placement/${drive.placement_id}`} className="hover:text-blue-700 transition">
+                          {drive.company_name}
+                        </Link>
+                      </td>
                       <td className="py-3.5 px-4 text-blue-700 font-semibold">{drive.job_role}</td>
                       <td className="py-3.5 px-4">
                         <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 font-semibold text-slate-700 border border-slate-200">
@@ -365,6 +391,15 @@ export default function DrivesClient({ initialDrives = [] }) {
                             </span>
                           ))}
                         </div>
+                      </td>
+                      <td className="py-3.5 px-4 text-right">
+                        <Link
+                          href={`/placement/${drive.placement_id}`}
+                          className="inline-flex items-center gap-1 text-xs font-bold text-blue-700 hover:text-blue-900 hover:underline"
+                        >
+                          <span>Details</span>
+                          <span>→</span>
+                        </Link>
                       </td>
                     </tr>
                   ))}
