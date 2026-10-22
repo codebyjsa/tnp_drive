@@ -256,23 +256,19 @@ export default function DrivesClient({ initialDrives = [] }) {
         {filteredDrives.length > 0 && viewMode === "grid" && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredDrives.map((drive) => (
-              <div
+              <Link
                 key={drive.placement_id}
-                className="bg-white rounded-2xl border border-slate-200/90 hover:border-blue-400 p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition group"
+                href={`/placement/${drive.placement_id}`}
+                className="bg-white rounded-2xl border border-slate-200/90 hover:border-blue-500 hover:shadow-lg p-6 flex flex-col justify-between shadow-xs transition group cursor-pointer block"
               >
                 <div className="space-y-4">
                   {/* Top Card Header */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div>
-                        <Link
-                          href={`/placement/${drive.placement_id}`}
-                          className="font-bold text-slate-900 text-lg group-hover:text-blue-700 transition block"
-                        >
-                          {drive.company_name}
-                        </Link>
-                        <p className="text-sm font-semibold text-slate-600">{drive.job_role}</p>
-                      </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900 text-lg group-hover:text-blue-700 transition">
+                        {drive.company_name}
+                      </h3>
+                      <p className="text-sm font-semibold text-slate-600">{drive.job_role}</p>
                     </div>
                     <span
                       className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
@@ -301,7 +297,7 @@ export default function DrivesClient({ initialDrives = [] }) {
                   </p>
                 </div>
 
-                {/* Bottom Card Footer with Badges & Action */}
+                {/* Bottom Card Footer with Badges */}
                 <div className="pt-4 mt-4 border-t border-slate-100 space-y-3">
                   {/* Min CGPA */}
                   <div className="flex items-center justify-between text-xs">
@@ -327,26 +323,8 @@ export default function DrivesClient({ initialDrives = [] }) {
                       ))}
                     </div>
                   </div>
-
-                  {/* View Details Link */}
-                  <div className="pt-2">
-                    <Link
-                      href={`/placement/${drive.placement_id}`}
-                      className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-blue-700 text-slate-700 hover:text-white font-bold text-xs uppercase tracking-wider transition group/btn"
-                    >
-                      <span>View Details & Eligibility</span>
-                      <svg
-                        className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </Link>
-                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
