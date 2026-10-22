@@ -5,7 +5,7 @@ import { Pool } from "pg";
 const globalForPrisma = globalThis;
 
 function createPrismaClient() {
-  const connectionString = process.env.tnp_DATABASE_URL;
+  const connectionString = process.env.DATABASE_URL || process.env.tnp_DATABASE_URL;
   const pool = new Pool({ connectionString });
   const adapter = new PrismaPg(pool);
   return new PrismaClient({ adapter });
