@@ -6,6 +6,7 @@ A centralized platform designed to streamline and automate Training & Placement 
 
 ## Table of Contents
 
+- [Live Deployment & Demo Credentials](#live-deployment--demo-credentials)
 - [Project Description](#project-description)
 - [Tech Stack](#tech-stack)
 - [Project Setup](#project-setup)
@@ -26,6 +27,23 @@ A centralized platform designed to streamline and automate Training & Placement 
 - [Data Models Reference](#data-models-reference)
   - [Branch Enum](#branch-enum)
   - [JobType Enum](#jobtype-enum)
+
+---
+
+## Live Deployment & Demo Credentials
+
+- **Live Web App**: [https://tnp-drive.vercel.app](https://tnp-drive.vercel.app) *(or your deployed Vercel domain)*
+- **Admin Portal**: [https://tnp-drive.vercel.app/admin](https://tnp-drive.vercel.app/admin)
+
+### Demo Admin Credentials:
+| Field | Value |
+| :--- | :--- |
+| **Email** | `davjasdeepsinghji9e17@gmail.com` |
+| **Password** | `jsa@2006` |
+| **Role** | Student Admin Coordinator (CSE, 4th Year) |
+
+> [!NOTE]
+> Alternative Superadmin account: `admin@tnp.edu` with password `admin@gndec2026`.
 
 ---
 
@@ -477,6 +495,9 @@ The admin portal allows TNP coordinators to log in and publish new campus placem
 ![Admin Login Screen](public/screenshots/admin_login.png)
 
 - Secure coordinator login validating `admin_email` and `admin_password` against the database via `POST /api/admin/login`.
+- **Default Credentials**:
+  - **Email**: `davjasdeepsinghji9e17@gmail.com`
+  - **Password**: `jsa@2006`
 - Stores the active admin profile in session storage (`{ admin_id, admin_name, admin_email }`) with a 1-click **Logout** action.
 
 #### B. Placement Drive Registration Form & Management
