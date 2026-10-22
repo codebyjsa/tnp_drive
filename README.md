@@ -32,7 +32,7 @@ A centralized platform designed to streamline and automate Training & Placement 
 
 ## Live Deployment & Demo Credentials
 
-- **Live Web App**: [https://tnp-drive.vercel.app](https://tnp-drive-olive.vercel.app/) *(or your deployed Vercel domain)*
+- **Live Web App**: [https://tnp-drive.vercel.app](https://tnp-drive-olive.vercel.app/) 
 - **Admin Portal**: [https://tnp-drive.vercel.app/admin](https://tnp-drive-olive.vercel.app/admin)
 
 ### Demo Admin Credentials:
