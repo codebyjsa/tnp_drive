@@ -40,10 +40,7 @@ A centralized platform designed to streamline and automate Training & Placement 
 | :--- | :--- |
 | **Email** | `davjasdeepsinghji9e17@gmail.com` |
 | **Password** | `jsa@2006` |
-| **Role** | Student Admin Coordinator (CSE, 4th Year) |
 
-> [!NOTE]
-> Alternative Superadmin account: `admin@tnp.edu` with password `admin@gndec2026`.
 
 ---
 
